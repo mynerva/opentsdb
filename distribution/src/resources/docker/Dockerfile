@@ -25,4 +25,4 @@ ENV       LOGBACK $WORKDIR/conf/logback.xml
 ENV       JAVA_OPTS="-Xms512m -Xmx2048m -enableassertions -enablesystemassertions"
 ENV       CLI_ARGS=""
 
-ENTRYPOINT /bin/sh $WORKDIR/bin/tsdb tsd --config.providers=${CONFIG} ${CLI_ARGS} > ${LOGDIR}/stdout.log 2> ${LOGDIR}/stderr.log
+ENTRYPOINT /bin/sh $WORKDIR/bin/tsdb tsd --config.providers=${CONFIG},CommandLine --tsd.stats.tags.global=hostname,${HOSTNAME} ${CLI_ARGS}
